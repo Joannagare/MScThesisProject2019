@@ -1,0 +1,22 @@
+#!/usr/bin/python
+## Author Joanna Garefalaki ##   
+## This script opens a file with ready to download links for raw data and and picks 100 randomly
+
+import random
+from optparse import OptionParser
+parser = OptionParser()
+parser.add_option("-f", "--file", dest = "file", help = "add file to get sample from", metavar='FILE')
+parser.add_option("-n", "--number", dest="number", help="add size of sample", metavar="FILE")
+(options, args) = parser.parse_args()
+
+size=int(options.number)
+read_file = options.file
+population = open(read_file).readlines()
+population = set(population)
+samples = random.sample(population, size)
+
+
+with open('randombai_find_their_bam.txt', 'a') as output:	
+	for i in samples:
+		output.write("%s" % i)
+
